@@ -62,10 +62,10 @@ computerScoreSpan.textContent = computerScore;
 
 function endGame(){
   if (humanScore === 5) {
+    resultDiv.textContent = ""
     scoreSpan.textContent = `You won the game!
                 Final Score: 
-                Human:${humanScore}
-                Computer:${computerScore}`
+              `
     resultDiv.appendChild(scoreSpan)
     containerBtn.forEach(btn =>{
     btn.disabled = true
@@ -74,10 +74,10 @@ function endGame(){
     
   }
    if (computerScore === 5){
+    resultDiv.textContent = ""
     scoreSpan.textContent = `You lost the game!
                      Final Score: 
-                     Human:${humanScore}
-                     Computer:${computerScore}`;
+                    `;
                      resultDiv.appendChild(scoreSpan)
                      containerBtn.forEach(btn =>{
     btn.disabled = true
