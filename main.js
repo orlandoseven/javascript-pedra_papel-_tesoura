@@ -5,8 +5,8 @@ const resultDiv = document.querySelector("#result")
 const humanScoreSpan = document.getElementById("human-score");
 const computerScoreSpan = document.getElementById("computer-score");
 const container = document.querySelector(".container")
-const scoreDiv = document.createElement("div")
-
+const scoreSpan = document.createElement("span")
+const containerBtn = document.querySelectorAll(".container-btn button");
 
 
 function getComputerChoice() {
@@ -43,9 +43,11 @@ function playRound(humanChoice, computerChoice) {
      computerScore++;
   }
   scoreUpdate()
+  endGame()
 }
 
-document.querySelectorAll(".container-btn button").forEach(button =>{
+
+containerBtn.forEach(button =>{
 button.addEventListener("click",()=>{
 const humanSelection = button.getAttribute("data-choice");
 const computerSelection = getComputerChoice();
@@ -58,30 +60,33 @@ humanScoreSpan.textContent = humanScore;
 computerScoreSpan.textContent = computerScore;
 }
 
+function endGame(){
+  if (humanScore === 5) {
+    scoreSpan.textContent = `You won the game!
+                Final Score: 
+                Human:${humanScore}
+                Computer:${computerScore}`
+    resultDiv.appendChild(scoreSpan)
+    containerBtn.forEach(btn =>{
+    btn.disabled = true
+  })
+    
+    
+  }
+   if (computerScore === 5){
+    scoreSpan.textContent = `You lost the game!
+                     Final Score: 
+                     Human:${humanScore}
+                     Computer:${computerScore}`;
+                     resultDiv.appendChild(scoreSpan)
+                     containerBtn.forEach(btn =>{
+    btn.disabled = true
+  })
+  }
+
+  
+
+}
 
 
 
-
-// function playGame() {
-//   for (let i = 1; i <= 5; i++) {
-//     console.log(`Round ${i}`);
-
-//     const humanSelection = btnHumanChoice;
-//     const computerSelection = btnComputerChoice;
-
-//     playRound(humanSelection, computerSelection);
-//   }
-
-//   if (humanScore > computerScore) {
-//     console.log(`You won the game!
-//                 Final Score: 
-//                 Human:${humanScore}
-//                 Computer:${computerScore}`);
-//   } else {
-//     console.log(`You lost the game!
-//                      Final Score: 
-//                      Human:${humanScore}
-//                      Computer:${computerScore}`);
-//   }
-// }
-// playGame();
