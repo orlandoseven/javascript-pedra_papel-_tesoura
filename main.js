@@ -2,6 +2,11 @@
 let humanScore = 0;
 let computerScore = 0;
 const resultDiv = document.querySelector("#result")
+const humanScoreSpan = document.getElementById("human-score");
+const computerScoreSpan = document.getElementById("computer-score");
+const container = document.querySelector(".container")
+const scoreDiv = document.createElement("div")
+
 
 
 function getComputerChoice() {
@@ -37,6 +42,7 @@ function playRound(humanChoice, computerChoice) {
     resultDiv.textContent = `You lost! ${computerChoice} beats ${humanChoice}`
      computerScore++;
   }
+  scoreUpdate()
 }
 
 document.querySelectorAll(".container-btn button").forEach(button =>{
@@ -46,6 +52,12 @@ const computerSelection = getComputerChoice();
 playRound(humanSelection,computerSelection)
 })
 })
+
+function scoreUpdate(){
+humanScoreSpan.textContent = humanScore;
+computerScoreSpan.textContent = computerScore;
+}
+
 
 
 
