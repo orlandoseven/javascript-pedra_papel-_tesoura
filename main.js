@@ -1,6 +1,13 @@
 //Project:Rock Paper Scissors
 let humanScore = 0;
 let computerScore = 0;
+const resultDiv = document.querySelector("#result")
+const humanScoreSpan = document.getElementById("human-score");
+const computerScoreSpan = document.getElementById("computer-score");
+const container = document.querySelector(".container")
+const scoreSpan = document.createElement("span")
+const containerBtn = document.querySelectorAll(".container-btn button");
+
 
 function getComputerChoice() {
   let computerChoice = Math.floor(Math.random() * 3);
@@ -17,47 +24,69 @@ function getHumanChoice() {
   let humanChoice = prompt(
     "Choose one of the three options:(rock/paper/scissors): "
   );
-  return humanChoice;
+  return humanChoice.toUpperCase();
 }
 
 function playRound(humanChoice, computerChoice) {
-  let choice = humanChoice;
 
-  if (choice.toUpperCase() === computerChoice) {
-    console.log("Tie, no one scored");
+  if (humanChoice === computerChoice) {
+    resultDiv.textContent = `Tie, no one scored`
   } else if (
-    (choice.toUpperCase() === "ROCK" && computerChoice === "SCISSORS") ||
-    (choice.toUpperCase() === "PAPER" && computerChoice === "ROCK") ||
-    (choice.toUpperCase() === "SCISSORS" && computerChoice === "PAPER")
+    (humanChoice === "ROCK" && computerChoice === "SCISSORS") ||
+    (humanChoice === "PAPER" && computerChoice === "ROCK") ||
+    (humanChoice === "SCISSORS" && computerChoice === "PAPER")
   ) {
-    console.log(`You won! ${choice.toUpperCase} beat ${computerChoice}`);
+    resultDiv.textContent = `You won! ${humanChoice} beats ${computerChoice}`
     humanScore++;
   } else {
-    console.log(`You lost ${computerChoice} beat ${choice.toUpperCase}`);
-    computerScore++;
+    resultDiv.textContent = `You lost! ${computerChoice} beats ${humanChoice}`
+     computerScore++;
   }
+  scoreUpdate()
+  endGame()
 }
 
-function playGame() {
-  for (let i = 1; i <= 5; i++) {
-    console.log(`Round ${i}`);
 
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
+containerBtn.forEach(button =>{
+button.addEventListener("click",()=>{
+const humanSelection = button.getAttribute("data-choice");
+const computerSelection = getComputerChoice();
+playRound(humanSelection,computerSelection)
+})
+})
 
-    playRound(humanSelection, computerSelection);
-  }
+function scoreUpdate(){
+humanScoreSpan.textContent = humanScore;
+computerScoreSpan.textContent = computerScore;
+}
 
-  if (humanScore > computerScore) {
-    console.log(`You won the game!
+function endGame(){
+  if (humanScore === 5) {
+    resultDiv.textContent = ""
+    scoreSpan.textContent = `You won the game!
                 Final Score: 
-                Human:${humanScore}
-                Computer:${computerScore}`);
-  } else {
-    console.log(`You lost the game!
-                     Final Score: 
-                     Human:${humanScore}
-                     Computer:${computerScore}`);
+              `
+    resultDiv.appendChild(scoreSpan)
+    containerBtn.forEach(btn =>{
+    btn.disabled = true
+  })
+    
+    
   }
+   if (computerScore === 5){
+    resultDiv.textContent = ""
+    scoreSpan.textContent = `You lost the game!
+                     Final Score: 
+                    `;
+                     resultDiv.appendChild(scoreSpan)
+                     containerBtn.forEach(btn =>{
+    btn.disabled = true
+  })
+  }
+
+  
+
 }
-playGame();
+
+
+
