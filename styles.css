@@ -1,0 +1,11 @@
+body{
+    background-color: dimgrey;
+    
+}
+.container-btn{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+}
