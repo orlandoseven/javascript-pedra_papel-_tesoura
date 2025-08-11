@@ -15,3 +15,4 @@ Será retornado como resultado empate,vitoria ou derrota, a cada vitoria e somad
 
 
 <h2>Demonstração</h2>
+https://orlandoseven.github.io/javascript-pedra_papel-_tesoura/
