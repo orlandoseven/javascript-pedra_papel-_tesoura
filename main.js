@@ -13,33 +13,26 @@ const containerBtn = document.querySelectorAll(".container-btn button");
 function getComputerChoice() {
   let computerChoice = Math.floor(Math.random() * 3);
   if (computerChoice === 0) {
-    return "ROCK";
+    return "PEDRA";
   } else if (computerChoice === 1) {
-    return "PAPER";
+    return "PAPEL";
   } else {
-    return "SCISSORS";
+    return "TESOURA";
   }
-}
-
-function getHumanChoice() {
-  let humanChoice = prompt(
-    "Choose one of the three options:(rock/paper/scissors): "
-  );
-  return humanChoice.toUpperCase();
 }
 
 function playRound(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) {
-    resultDiv.textContent = `Tie, no one scored`;
+    resultDiv.textContent = `Empate,ninguem pontuou`;
   } else if (
-    (humanChoice === "ROCK" && computerChoice === "SCISSORS") ||
-    (humanChoice === "PAPER" && computerChoice === "ROCK") ||
-    (humanChoice === "SCISSORS" && computerChoice === "PAPER")
+    (humanChoice === "ROCK" && computerChoice === "TESOURA") ||
+    (humanChoice === "PAPEL" && computerChoice === "PEDRA") ||
+    (humanChoice === "TESOURA" && computerChoice === "PAPEL")
   ) {
-    resultDiv.textContent = `You won! ${humanChoice} beats ${computerChoice}`;
+    resultDiv.textContent = `Você ganhou! ${humanChoice} vence ${computerChoice}`;
     humanScore++;
   } else {
-    resultDiv.textContent = `You lost! ${computerChoice} beats ${humanChoice}`;
+    resultDiv.textContent = `Você perdeu! ${computerChoice} vence ${humanChoice}`;
     computerScore++;
   }
   scoreUpdate();
@@ -63,8 +56,8 @@ function endGame() {
   if (humanScore === 5) {
     resultDiv.textContent = "";
     scoreSpan.style.cssText = "color:green;font-size:2rem";
-    scoreSpan.textContent = `You won the game!
-                Final Score: 
+    scoreSpan.textContent = `Você ganhou o jogo!
+                Placar Final: 
               `;
     finalScore.append(scoreSpan);
     containerBtn.forEach((btn) => {
@@ -74,8 +67,8 @@ function endGame() {
   if (computerScore === 5) {
     resultDiv.textContent = "";
     scoreSpan.style.cssText = "color:red;font-size:2rem";
-    scoreSpan.textContent = `You lost the game!
-                     Final Score: 
+    scoreSpan.textContent = `Você perdeu o jogo!
+                     Placar Final: 
                     `;
     finalScore.append(scoreSpan);
     containerBtn.forEach((btn) => {
