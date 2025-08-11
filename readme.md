@@ -1,4 +1,4 @@
-<img src="./img/logo-papel-pedra-tesoura.png"/>
+<img src="./img/logo_readme.png"/>
 <h1>Pedra - Papel - Tesoura</h1>
 
 <h2>Descrição</h2>
